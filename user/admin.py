@@ -40,3 +40,4 @@ class CustomUserAdmin(ImportExportModelAdmin, BaseUserAdmin):
 admin.site.unregister(User)
 # Register the CustomUserAdmin with import and export functionality
 admin.site.register(User, CustomUserAdmin)
+
