@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
+from rest_framework import generics
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
+
+
+def serzhan(request):
+    return render(request, 'user/serzhan.html')
 
 
 def home(request):
-    return render(request, 'user/home.html')
+    return render(request, 'salary/employee_list.html')
 
 
 def user_logout(request):
@@ -22,7 +29,13 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 # Войти успешно, перенаправить на нужную страницу
-                return redirect('home')
+                return redirect('salary/employees')
     else:
         form = LoginForm()
     return render(request, 'user/login.html', {'form': form})
+
+
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+

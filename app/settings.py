@@ -1,21 +1,20 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+env_path = os.path.join(BASE_DIR, '.env')
+load_dotenv(env_path)
 SECRET_KEY = 'django-insecure-9=i*kqg4h8)22$1dvt#@4avbzk4dz8zp@bk(i_&8nz@m64pbjc'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['e5ad-195-82-8-35.ngrok-free.app', 'localhost', '*']
+ALLOWED_HOSTS = ['a0d6-195-82-8-35.ngrok-free.app', 'localhost', '*']
 
-CSRF_TRUSTED_ORIGINS = ['https://e5ad-195-82-8-35.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://a0d6-195-82-8-35.ngrok-free.app']
 
 
 # Application definition
@@ -28,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "debug_toolbar",
     'import_export',
+    'salary',
     'user',
     'testmodels',
     'rest_framework',
@@ -42,9 +43,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'app.urls'
+DEFENDER_REDIS_URL = 'redis://localhost:6379/0'
+
 
 TEMPLATES = [
     {
@@ -110,9 +114,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -125,6 +126,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 JAZZMIN_SETTINGS = {
     "site_title": "Админ панель",
@@ -259,8 +266,8 @@ JAZZMIN_SETTINGS = {
 # settings.py
 
 JAZZMIN_UI_TWEAKS = {
-    "theme": "flatly",
-    #"dark_mode_theme": "darkly",
+    "theme": "simplex ",
+    "dark_mode_theme": "darkly",
 }
 
 

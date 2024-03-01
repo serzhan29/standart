@@ -15,19 +15,21 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserResource(resources.ModelResource):
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_active',)
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_active', 'user_permissions')
         skip_unchanged = True
 
 
 class CustomUserAdmin(ImportExportModelAdmin, BaseUserAdmin):
+    list_display = BaseUserAdmin.list_display + ('id',)
     form = UserChangeForm
     resource_class = UserResource
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal Info', {'fields': ('first_name', 'last_name', 'email', 'phone_number')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Персональная информация: ', {'fields': ('first_name', 'last_name', 'email', 'phone_number')}),
+        ('Права пользователя: ', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
 
@@ -36,8 +38,7 @@ class CustomUserAdmin(ImportExportModelAdmin, BaseUserAdmin):
         verbose_name_plural = 'Пользователи'
 
 
-# Unregister the default User admin to avoid conflicts
+
 admin.site.unregister(User)
-# Register the CustomUserAdmin with import and export functionality
 admin.site.register(User, CustomUserAdmin)
 

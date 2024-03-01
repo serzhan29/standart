@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Kvitok KZ {% endblock %}</title>
+     <link rel="stylesheet" href="{% static 'css/salary.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Вставьте здесь вашу общую CSS стилизацию, если есть -->
+</head>
+<body>
+    <header>
+        <!-- Навигационная панель. -->
+            <nav>
+                <ul>
+                    <li><a href="{% url 'employee_list' %}">Моя зарплата</a></li>
+                    <li><a href="{% url 'logout' %}">Выход</a></li>
+                    <li><a href="{% url 'admin:login' %}">Вход в административную панель</a></li>
+                     <li><a href="{% url 'change_password' %}">Изменить пароль</a></li>
+
+                    <!-- Другие пункты меню -->
+                </ul>
+            </nav>
+    </header>
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Нижняя часть сайта. -->
+    </footer>
+</body>
+</html>

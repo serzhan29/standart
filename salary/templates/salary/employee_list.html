@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+{% block content %}
+<body>
+    <div class="container">
+        <h1>Добро пожаловать, {{ username }}</h1>
+        <p>Никнеим: {{ nickname }}</p>
+        <h2>Информация о вашей заплате</h2>
+        {% if employees %}
+            <ul>
+                {% for employee in employees %}
+                    <li>
+                        <p>Позиция: {{ employee.position }}</p>
+                        <p>Основная заплата: {{ employee.base_salary }}</p>
+                        <p>Штат: {{ employee.state }}</p>
+                        <p>Рабочие дни: {{ employee.works_day }}</p>
+                        <p>Факт рабочего дня: {{ employee.fact_dat }}</p>
+                        <p>Коэффициент: {{ employee.ratio }}</p>
+                        <p>Тарифная ставка: {{ employee.tariff_fund }}</p>
+                        <p>Повышение 100%: {{ employee.raising }}</p>
+                        <p>Основная ставка: {{ employee.base_rate }}</p>
+                        <p>Недельная нагрузка с 1 по 4: {{ employee.week_1_4 }}</p>
+                        <p>Недельная нагрузка с 5 по 9: {{ employee.week_5_9 }}</p>
+                        <p>Недельная нагрузка с 10 по 11: {{ employee.week_10_11 }}</p>
+                        <p>Домашнее обучение - 1: {{ employee.home_learn_1 }}</p>
+                        <p>Итог: {{ employee.result }}</p>
+                        <p>Основная зарплата: {{ employee.base_salary }}</p>
+                        <p>Пропущенные уроки: {{ employee.skip_lesson }}</p>
+                        <p>Сумма 1: {{ employee.amount_1 }}</p>
+                        <p>Замена урока: {{ employee.replace_lesson }}</p>
+                        <p>Сумма 2: {{ employee.amount_2 }}</p>
+                        <p>Должностной оклад - 1: {{ employee.position_salary_1 }}</p>
+                        <p>Должностной оклад - 2: {{ employee.position_salary_2 }}</p>
+                        <p>Всего начисление: {{ employee.total_result }}</p>
+                        <p>Экология 20%: {{ employee.ecology }}</p>
+                        <p>Надбавка 10%: {{ employee.allowance }}</p>
+                        <p>Вредность - 1: {{ employee.hazard_1 }}</p>
+                        <p>Вредность - 2: {{ employee.hazard_2 }}</p>
+                        <p>Соммасы 1 - 11 д/т: {{ employee.total_amount_1 }}</p>
+                        <p>Соммасы 1 - 11 д/т: {{ employee.total_amount_2 }}</p>
+                        <p>ЗП кл.руководство - 1: {{ employee.classroom_salary_1 }}</p>
+                        <p>ЗП кл.руководство - 2: {{ employee.classroom_salary_2 }}</p>
+                        <p>Домашнее обучение - 2: {{ employee.home_learn_2 }}</p>
+                        <p>Домашнее обучение - 3: {{ employee.home_learn_3 }}</p>
+                        <p>Пән кабинет - 1: {{ employee.lesson_room_1 }}</p>
+                        <p>Пән кабинет - 2: {{ employee.lesson_room_2 }}</p>
+                        <p>Обновление: {{ employee.update }}</p>
+                        <p>Три языка физ-ра - 1: {{ employee.three_languages_1 }}</p>
+                        <p>Три языка физ-ра - 2: {{ employee.three_languages_2 }}</p>
+                        <p>Магистр - 1: {{ employee.master_1 }}</p>
+                        <p>Магистр - 2: {{ employee.master_2 }}</p>
+                        <p>Процент: {{ employee.percent }}</p>
+                        <p>Категория 1 процент: {{ employee.category_1 }}</p>
+                        <p>Категория 2 процент: {{ employee.category_2 }}</p>
+                        <p>Завуч надбавка - 1: {{ employee.head_teacher_1 }}</p>
+                        <p>Завуч надбавка - 2: {{ employee.head_teacher_2 }}</p>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-data">No salary information available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}
