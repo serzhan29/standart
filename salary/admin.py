@@ -1,9 +1,8 @@
 from django.contrib import admin
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin  # Добавьте эту строку
 from .models import Employee
 
-
-class EmployeeAdmin(admin.ModelAdmin):
+class EmployeeAdmin(ImportExportModelAdmin):  # Обновите эту строку
     list_display = ('user_id', 'position', 'state', 'works_day', 'fact_dat', 'ratio', 'tariff_fund', 'raising',
                     'base_rate', 'week_1_4', 'week_5_9', 'week_10_11', 'home_learn_1', 'result', 'base_salary',
                     'skip_lesson', 'amount_1', 'replace_lesson', 'amount_2', 'position_salary_1', 'position_salary_2',
